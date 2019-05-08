@@ -1,0 +1,6 @@
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\bin\Debug\DataLibrary.dll
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\bin\Debug\DataLibrary.pdb
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.dll
+C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.pdb
