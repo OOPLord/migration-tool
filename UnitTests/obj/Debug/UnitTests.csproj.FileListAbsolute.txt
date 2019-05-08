@@ -1,0 +1,16 @@
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\UnitTests.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\UnitTests.pdb
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\DataLibrary.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\DataLibrary.pdb
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\obj\Debug\UnitTests.csprojAssemblyReference.cache
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\obj\Debug\UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\Stiff\source\repos\Migration Tool\UnitTests\obj\Debug\UnitTests.pdb
