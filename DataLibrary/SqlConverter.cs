@@ -26,7 +26,7 @@ namespace DataLibrary
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public void CreateNewTable(TableModel model)
+        public string CreateNewTable(TableModel model)
         {
             // CREATE TABLE table_name(
             // column1 datatype,
@@ -57,10 +57,10 @@ namespace DataLibrary
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            this.ExetuteScript(command);
+            return this.ExetuteScript(command);
         }
 
-        public void DropTable(TableModel model)
+        public string DropTable(TableModel model)
         {
             // DROP TABLE table_name;
 
@@ -70,10 +70,10 @@ namespace DataLibrary
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            this.ExetuteScript(command);
+            return this.ExetuteScript(command);
         }
 
-        public void AlterTableAdd(TableModel model, ColumnProperty newColumn)
+        public string AlterTableAdd(TableModel model, ColumnProperty newColumn)
         {
             // ALTER TABLE table_name
             // ADD column_name datatype;
@@ -89,10 +89,10 @@ namespace DataLibrary
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            this.ExetuteScript(command);
+            return this.ExetuteScript(command);
         }
 
-        public void AlterTableDrop(TableModel model, ColumnProperty dropColumn)
+        public string AlterTableDrop(TableModel model, ColumnProperty dropColumn)
         {
             // ALTER TABLE table_name
             // DROP COLUMN column_name;
@@ -104,10 +104,10 @@ namespace DataLibrary
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            this.ExetuteScript(command);
+            return this.ExetuteScript(command);
         }
 
-        public void AlterTableAlter(TableModel model, ColumnProperty alterColumn)
+        public string AlterTableAlter(TableModel model, ColumnProperty alterColumn)
         {
             // ALTER TABLE table_name
             // ALTER COLUMN column_name datatype;
@@ -119,7 +119,7 @@ namespace DataLibrary
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            this.ExetuteScript(command);
+            return this.ExetuteScript(command);
         }
 
         public void SelectDataFromDB(TableModel model)
@@ -185,8 +185,10 @@ namespace DataLibrary
             sqlConnection.Close();
         }
 
-        private void ExetuteScript(SqlCommand command)
+        private string ExetuteScript(SqlCommand command)
         {
+            string errorMessage = string.Empty;
+
             try
             {
                 if (sqlConnection.State == ConnectionState.Closed)
@@ -200,6 +202,8 @@ namespace DataLibrary
             catch (System.Exception ex)
             {
                 Trace.WriteLine(ex.Message);
+
+                return ex.Message;
             }
             finally
             {
@@ -208,6 +212,8 @@ namespace DataLibrary
                     sqlConnection.Close();
                 }
             }
+
+            return string.Empty;
         }
     }
 }

@@ -18,8 +18,9 @@ namespace UnitTests
         [TestMethod]
         public void TestCreateTableGeneric()
         {
-            TableModel tm = new TableModel();
+            string errorMessage = string.Empty;
 
+            TableModel tm = new TableModel();
             tm.Name = "RuntimeTable";
             tm.ColumnCollection = new List<ColumnProperty>()
             {
@@ -28,49 +29,60 @@ namespace UnitTests
                 new ColumnProperty("LastName", "varchar(255)"),
             };
 
-            sqlConverter.CreateNewTable(tm);
+            errorMessage = sqlConverter.CreateNewTable(tm);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
 
         [TestMethod]
         public void TestAlterTableAdd()
         {
-            TableModel tm = new TableModel();
+            string errorMessage = string.Empty;
 
+            TableModel tm = new TableModel();
             tm.Name = "RuntimeTable";
 
             ColumnProperty newColumn = new ColumnProperty("Patronomic", "varchar(255)");
 
-            sqlConverter.AlterTableAdd(tm, newColumn);
+            errorMessage = sqlConverter.AlterTableAdd(tm, newColumn);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
 
         [TestMethod]
         public void TestAlterTableAlter()
         {
-            TableModel tm = new TableModel();
+            string errorMessage = string.Empty;
 
+            TableModel tm = new TableModel();
             tm.Name = "RuntimeTable";
 
             ColumnProperty newColumn = new ColumnProperty("Patronomic", "int");
 
-            sqlConverter.AlterTableAlter(tm, newColumn);
+            errorMessage = sqlConverter.AlterTableAlter(tm, newColumn);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
 
         [TestMethod]
         public void TestAlterTableDrop()
         {
-            TableModel tm = new TableModel();
+            string errorMessage = string.Empty;
 
+            TableModel tm = new TableModel();
             tm.Name = "RuntimeTable";
 
             ColumnProperty newColumn = new ColumnProperty("Patronomic", "int");
 
-            sqlConverter.AlterTableDrop(tm, newColumn);
+            errorMessage = sqlConverter.AlterTableDrop(tm, newColumn);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
 
         [TestMethod]
         public void TestInsert()
         {
-            sqlConverter.InsertDataIntoDB();
+            ////sqlConverter.InsertDataIntoDB();
         }
 
         [TestMethod]
@@ -92,11 +104,14 @@ namespace UnitTests
         [TestMethod]
         public void TestDropTableGeneric()
         {
-            TableModel tm = new TableModel();
+            string errorMessage = string.Empty;
 
+            TableModel tm = new TableModel();
             tm.Name = "RuntimeTable";
 
-            sqlConverter.DropTable(tm);
+            errorMessage = sqlConverter.DropTable(tm);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
     }
 }
