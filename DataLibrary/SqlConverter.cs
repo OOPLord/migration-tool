@@ -73,13 +73,49 @@ namespace DataLibrary
             this.ExetuteScript(command);
         }
 
-        public void AlterTable(TableModel model)
+        public void AlterTableAdd(TableModel model, ColumnProperty newColumn)
         {
-            // DROP TABLE table_name;
+            // ALTER TABLE table_name
+            // ADD column_name datatype;
+
+            // string execSQL = "DECLARE @sup nvarchar(15); " + 
+            // "SET @sup = QUOTENAME('" + suppliernotxt + "'); " +
+            // "EXEC ('ALTER TABLE ProductNormalDB  ADD ' + @sup + ' nvarchar(20) NULL')"
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("DROP TABLE " + model.Name + ";");
+            sb.Append("ALTER TABLE " + model.Name +
+                "\nADD "+ newColumn.Name + " " + newColumn.Type + ";");
+
+            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+
+            this.ExetuteScript(command);
+        }
+
+        public void AlterTableDrop(TableModel model, ColumnProperty dropColumn)
+        {
+            // ALTER TABLE table_name
+            // DROP COLUMN column_name;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("ALTER TABLE " + model.Name +
+                "\nDROP COLUMN " + dropColumn.Name + ";");
+
+            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+
+            this.ExetuteScript(command);
+        }
+
+        public void AlterTableAlter(TableModel model, ColumnProperty alterColumn)
+        {
+            // ALTER TABLE table_name
+            // ALTER COLUMN column_name datatype;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("ALTER TABLE " + model.Name +
+                "\nALTER COLUMN " + alterColumn.Name + " " + alterColumn.Type + ";");
 
             SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
