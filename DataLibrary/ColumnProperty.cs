@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace DataLibrary
 {
-    public class Property
+    public class ColumnProperty
     {
         private string name;
         private string type;
 
-        public Property()
+        public ColumnProperty()
         { }
+
+        public ColumnProperty(string columnName, string columnType)
+        {
+            this.name = columnName;
+            this.type = columnType;
+        }
 
         public string Name { get => name; set => name = value; }
         public string Type { get => type; set => type = value; }

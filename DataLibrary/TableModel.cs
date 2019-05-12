@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataLibrary
 {
-    public class ClassModel
+    public class TableModel
     {
         private string name;
-        private Property[] propertyCollection;
+        private List<ColumnProperty> propertyCollection;
 
-        public ClassModel()
+        public TableModel()
         { }
 
         public string Name { get => name; set => name = value; }
-        public Property[] PropertyCollection { get => propertyCollection; set => propertyCollection = value; }
+        public List<ColumnProperty> ColumnCollection { get => propertyCollection; set => propertyCollection = value; }
     }
 }
