@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using DataLibrary;
+﻿using DataLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace UnitTests
 {
@@ -33,13 +32,39 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestDropTableGeneric()
+        public void TestAlterTableAdd()
         {
             TableModel tm = new TableModel();
 
             tm.Name = "RuntimeTable";
-            
-            sqlConverter.DropTable(tm);
+
+            ColumnProperty newColumn = new ColumnProperty("Patronomic", "varchar(255)");
+
+            sqlConverter.AlterTableAdd(tm, newColumn);
+        }
+
+        [TestMethod]
+        public void TestAlterTableAlter()
+        {
+            TableModel tm = new TableModel();
+
+            tm.Name = "RuntimeTable";
+
+            ColumnProperty newColumn = new ColumnProperty("Patronomic", "int");
+
+            sqlConverter.AlterTableAlter(tm, newColumn);
+        }
+
+        [TestMethod]
+        public void TestAlterTableDrop()
+        {
+            TableModel tm = new TableModel();
+
+            tm.Name = "RuntimeTable";
+
+            ColumnProperty newColumn = new ColumnProperty("Patronomic", "int");
+
+            sqlConverter.AlterTableDrop(tm, newColumn);
         }
 
         [TestMethod]
@@ -62,6 +87,16 @@ namespace UnitTests
             };
 
             sqlConverter.SelectDataFromDB(tm);
+        }
+
+        [TestMethod]
+        public void TestDropTableGeneric()
+        {
+            TableModel tm = new TableModel();
+
+            tm.Name = "RuntimeTable";
+
+            sqlConverter.DropTable(tm);
         }
     }
 }
