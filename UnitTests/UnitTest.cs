@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,28 +8,60 @@ namespace UnitTests
     [TestClass]
     public class UnitTest
     {
-        [TestMethod]
-        public void TestCreateTable()
-        {
-            SqlConverter sqlConverter = new SqlConverter();
+        private SqlConverter sqlConverter;
 
-            sqlConverter.CreateTable();
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            sqlConverter = new SqlConverter();
+        }
+
+        [TestMethod]
+        public void TestCreateTableGeneric()
+        {
+            TableModel tm = new TableModel();
+
+            tm.Name = "RuntimeTable";
+            tm.ColumnCollection = new List<ColumnProperty>()
+            {
+                new ColumnProperty("PersonID", "int"),
+                new ColumnProperty("FirstName", "varchar(255)"),
+                new ColumnProperty("LastName", "varchar(255)"),
+            };
+
+            sqlConverter.CreateNewTable(tm);
+        }
+
+        [TestMethod]
+        public void TestDropTableGeneric()
+        {
+            TableModel tm = new TableModel();
+
+            tm.Name = "RuntimeTable";
+            
+            sqlConverter.DropTable(tm);
         }
 
         [TestMethod]
         public void TestInsert()
         {
-            SqlConverter sqlConverter = new SqlConverter();
-
             sqlConverter.InsertDataIntoDB();
         }
 
         [TestMethod]
         public void TestSelect()
         {
-            SqlConverter sqlConverter = new SqlConverter();
+            TableModel tm = new TableModel();
 
-            sqlConverter.SelectDataFromDB();
+            tm.Name = "RuntimeTable";
+            tm.ColumnCollection = new List<ColumnProperty>()
+            {
+                new ColumnProperty("PersonID", "int"),
+                new ColumnProperty("FirstName", "varchar(255)"),
+                new ColumnProperty("LastName", "varchar(255)"),
+            };
+
+            sqlConverter.SelectDataFromDB(tm);
         }
     }
 }

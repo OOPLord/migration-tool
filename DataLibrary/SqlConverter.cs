@@ -26,88 +26,108 @@ namespace DataLibrary
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public void CreateNewDB()
+        public void CreateNewTable(TableModel model)
         {
-            string str = "CREATE DATABASE MyDatabase ON PRIMARY " +
-                "(NAME = MyDatabase_Data, " +
-                "FILENAME = 'D:\\MyDatabaseData.mdf', " +
-                "SIZE = 2MB, MAXSIZE = 10MB, FILEGROWTH = 10%) " +
-                "LOG ON (NAME = MyDatabase_Log, " +
-                "FILENAME = D:\\MyDatabaseLog.ldf', " +
-                "SIZE = 1MB, " +
-                "MAXSIZE = 5MB, " +
-                "FILEGROWTH = 10%)";
+            // CREATE TABLE table_name(
+            // column1 datatype,
+            // column2 datatype,
+            // column3 datatype,
+            // ....
+            // );
 
-            SqlCommand myCommand = new SqlCommand(str, sqlConnection);
+            // CREATE TABLE TableName2 (
+            // [TutorialID] INT NOT NULL,
+            // [TutorialName] NCHAR(10) NOT NULL,
+            // PRIMARY KEY CLUSTERED([TutorialID] ASC)
+            // );
 
-            try
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("CREATE TABLE " + model.Name + "");
+
+            // ToDo: check if collection is not empty
+            sb.Append("(\n");
+
+            foreach (var column in model.ColumnCollection)
             {
-                sqlConnection.Open();
-                myCommand.ExecuteNonQuery();
+                sb.Append(column.Name + " " + column.Type + ",\n");
             }
-            catch (System.Exception ex)
-            {
-                Trace.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (sqlConnection.State == ConnectionState.Open)
-                {
-                    sqlConnection.Close();
-                }
-            }
+
+            sb.Append(");");
+
+            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+
+            this.ExetuteScript(command);
         }
 
-        public void CreateTable()
+        public void DropTable(TableModel model)
         {
-            string str = "CREATE TABLE TableName2 (" +
-                "[TutorialID] INT NOT NULL," +
-                "[TutorialName] NCHAR(10) NOT NULL," +
-                "PRIMARY KEY CLUSTERED([TutorialID] ASC)" +
-                ");";
+            // DROP TABLE table_name;
 
-            SqlCommand myCommand = new SqlCommand(str, sqlConnection);
+            StringBuilder sb = new StringBuilder();
 
-            try
-            {
-                ////sqlConnection.Open();
-                myCommand.ExecuteNonQuery();
-            }
-            catch (System.Exception ex)
-            {
-                Trace.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (sqlConnection.State == ConnectionState.Open)
-                {
-                    sqlConnection.Close();
-                }
-            }
+            sb.Append("DROP TABLE " + model.Name + ";");
+
+            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+
+            this.ExetuteScript(command);
         }
 
-        public void SelectDataFromDB()
+        public void AlterTable(TableModel model)
+        {
+            // DROP TABLE table_name;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("DROP TABLE " + model.Name + ";");
+
+            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+
+            this.ExetuteScript(command);
+        }
+
+        public void SelectDataFromDB(TableModel model)
         {
             SqlCommand command;
             SqlDataReader reader;
 
-            string sql;
             string output = string.Empty;
 
-            sql = "Select TutorialID, TutorialName from TableName";
+            StringBuilder sb = new StringBuilder();
 
-            command = new SqlCommand(sql, sqlConnection);
+            sb.Append("Select ");
 
-            reader = command.ExecuteReader();
-
-            while (reader.Read())
+            // ToDo: check if collection is not empty
+            
+            foreach (var column in model.ColumnCollection)
             {
-                output += reader.GetValue(0) + " - " + reader.GetValue(1);
+                sb.Append(column.Name + " " + column.Type + ",");
             }
 
-            reader.Close();
-            command.Dispose();
-            sqlConnection.Close();
+            sb.Append("from " + model.Name + ";");
+
+            try
+            {
+                command = new SqlCommand(sb.ToString(), sqlConnection);
+
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output += reader.GetValue(0) + " - " + reader.GetValue(1);
+                }
+
+                reader.Close();
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         public void InsertDataIntoDB()
@@ -127,6 +147,31 @@ namespace DataLibrary
 
             command.Dispose();
             sqlConnection.Close();
+        }
+
+        private void ExetuteScript(SqlCommand command)
+        {
+            try
+            {
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
+
+                //sqlConnection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (System.Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (sqlConnection.State == ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
+            }
         }
     }
 }
