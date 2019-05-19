@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace DataLibrary
 
         public SqlConverter()
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Stiff\Documents\demodb.mdf;Integrated Security=True;Connect Timeout=30";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=demodb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             sqlConnection = new SqlConnection(connectionString);
             sqlConnection.Open();
@@ -24,6 +25,38 @@ namespace DataLibrary
         public SqlConverter(string connectionString)
         {
             sqlConnection = new SqlConnection(connectionString);
+        }
+
+        public string Crea6eNewDatabase(string rootDirectory, string databaseName)
+        {
+            ////SqlConnection myConn = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;Integrated security=SSPI;database=master");
+
+            ////ROP DATABASE databasename;
+
+            string str = $"CREATE DATABASE {databaseName} ON PRIMARY " +
+                "(NAME = MyDatabase_Data, " +
+                $"FILENAME = '{rootDirectory + Path.AltDirectorySeparatorChar + databaseName}.mdf', " +
+                "SIZE = 2MB, MAXSIZE = 10MB, FILEGROWTH = 10%) " +
+                $"LOG ON (NAME = {databaseName}_Log, " +
+                $"FILENAME = '{rootDirectory + Path.AltDirectorySeparatorChar + databaseName}.ldf', " +
+                "SIZE = 1MB, " +
+                "MAXSIZE = 5MB, " +
+                "FILEGROWTH = 10%)";
+
+            SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
+
+            return this.ExetuteScript(createDatabaseCommand);
+        }
+
+        public string DropDatabase(string databaseName)
+        {
+            ////DROP DATABASE databasename;
+
+            string str = $"DROP DATABASE {databaseName};";
+
+            SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
+
+            return this.ExetuteScript(createDatabaseCommand);
         }
 
         public string CreateNewTable(TableModel model)

@@ -4,3 +4,10 @@ C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.csp
 C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.dll
 C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.pdb
 C:\Users\Stiff\source\repos\Migration Tool\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache
+D:\Workspace\Diploma\migration-tool\DataLibrary\bin\Debug\DataLibrary.dll
+D:\Workspace\Diploma\migration-tool\DataLibrary\bin\Debug\DataLibrary.pdb
+D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.csproj.CoreCompileInputs.cache
+D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.dll
+D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.pdb
+D:\Workspace\Diploma\migration-tool\DataLibrary\bin\Debug\DataLibrary.dll.config
+D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache
