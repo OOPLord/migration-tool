@@ -1,6 +1,9 @@
 ﻿using DataLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace UnitTests
 {
@@ -13,6 +16,26 @@ namespace UnitTests
         public void TestInitialize()
         {
             sqlConverter = new SqlConverter();
+        }
+
+        [TestMethod]
+        public void TestCreateDataBase()
+        {
+            string errorMessage = string.Empty;
+
+            errorMessage = sqlConverter.Crea6eNewDatabase("D:\\", "test");
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
+        }
+
+        [TestMethod]
+        public void TestDropDataBase()
+        {
+            string errorMessage = string.Empty;
+
+            errorMessage = sqlConverter.DropDatabase("test");
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
 
         [TestMethod]
@@ -77,12 +100,6 @@ namespace UnitTests
             errorMessage = sqlConverter.AlterTableDrop(tm, newColumn);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
-        }
-
-        [TestMethod]
-        public void TestInsert()
-        {
-            ////sqlConverter.InsertDataIntoDB();
         }
 
         [TestMethod]
