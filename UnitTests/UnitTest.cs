@@ -61,7 +61,7 @@ namespace UnitTests
         {
             string errorMessage = string.Empty;
 
-            FileManager.InvokeMethodSlow(string.Empty, "Test2", "UP");
+            FileManager.InvokeMethodSlow("Test2", "UP");
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }

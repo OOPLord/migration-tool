@@ -35,7 +35,7 @@ namespace UnitTests
 
             FileManager.CreateFile(tm.Name, code);
 
-            FileManager.InvokeMethodSlow(string.Empty, tm.Name, "Up");
+            FileManager.InvokeMethodSlow(tm.Name, "Up");
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
@@ -49,7 +49,7 @@ namespace UnitTests
 
             SqlConverter sqlConverter = new SqlConverter(connectionString);
 
-            FileManager.InvokeMethodSlow(string.Empty, "Test3", "Down");
+            FileManager.InvokeMethodSlow("Test3", "Down");
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }

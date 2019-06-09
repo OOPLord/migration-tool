@@ -47,7 +47,7 @@ namespace DataLibrary
             ////p.Save();
         }
 
-        public static Object InvokeMethodSlow(string AssemblyName,
+        public static Object InvokeMethodSlow(
                string ClassName, string MethodName)
         {
             string rootFolder = Deployment.DeterminePaths();
