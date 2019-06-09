@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +47,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>demodbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Deployment.cs" />
+    <Compile Include="FileManager.cs" />
     <Compile Include="Manager.cs" />
+    <Compile Include="MigrationDataManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -60,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="demodbDataSet.xsc">
       <DependentUpon>demodbDataSet.xsd</DependentUpon>
     </None>

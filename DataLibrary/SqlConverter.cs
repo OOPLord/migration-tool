@@ -27,7 +27,9 @@ namespace DataLibrary
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public string Crea6eNewDatabase(string rootDirectory, string databaseName)
+        public string ConnectionString { get { return sqlConnection.ConnectionString; } }
+
+        public string CreateNewDatabase(string rootDirectory, string databaseName)
         {
             ////SqlConnection myConn = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;Integrated security=SSPI;database=master");
 
@@ -43,9 +45,9 @@ namespace DataLibrary
                 "MAXSIZE = 5MB, " +
                 "FILEGROWTH = 10%)";
 
-            SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
+            ////SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
 
-            return this.ExetuteScript(createDatabaseCommand);
+            return this.ExetuteScript(str);
         }
 
         public string DropDatabase(string databaseName)
@@ -54,9 +56,9 @@ namespace DataLibrary
 
             string str = $"DROP DATABASE {databaseName};";
 
-            SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
+            ////SqlCommand createDatabaseCommand = new SqlCommand(str, sqlConnection);
 
-            return this.ExetuteScript(createDatabaseCommand);
+            return this.ExetuteScript(str);
         }
 
         public string CreateNewTable(TableModel model)
@@ -76,21 +78,23 @@ namespace DataLibrary
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("CREATE TABLE " + model.Name + "");
+            sb.Append("CREATE TABLE " + model.Name + "(");
 
             // ToDo: check if collection is not empty
-            sb.Append("(\n");
+            //sb.Append("(\n");
 
             foreach (var column in model.ColumnCollection)
             {
-                sb.Append(column.Name + " " + column.Type + ",\n");
+                sb.Append(column.Name + " " + column.Type + ",");
             }
 
             sb.Append(");");
 
-            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+            ////SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            return this.ExetuteScript(command);
+            ////return this.ExetuteScript(command);
+
+            return sb.ToString();
         }
 
         public string DropTable(TableModel model)
@@ -101,9 +105,11 @@ namespace DataLibrary
 
             sb.Append("DROP TABLE " + model.Name + ";");
 
-            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
+            ////SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
 
-            return this.ExetuteScript(command);
+            ////return this.ExetuteScript(command);
+
+            return sb.ToString();
         }
 
         public string AlterTableAdd(TableModel model, ColumnProperty newColumn)
@@ -120,9 +126,7 @@ namespace DataLibrary
             sb.Append("ALTER TABLE " + model.Name +
                 "\nADD "+ newColumn.Name + " " + newColumn.Type + ";");
 
-            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
-
-            return this.ExetuteScript(command);
+            return this.ExetuteScript(sb.ToString());
         }
 
         public string AlterTableDrop(TableModel model, ColumnProperty dropColumn)
@@ -135,9 +139,7 @@ namespace DataLibrary
             sb.Append("ALTER TABLE " + model.Name +
                 "\nDROP COLUMN " + dropColumn.Name + ";");
 
-            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
-
-            return this.ExetuteScript(command);
+            return this.ExetuteScript(sb.ToString());
         }
 
         public string AlterTableAlter(TableModel model, ColumnProperty alterColumn)
@@ -150,9 +152,7 @@ namespace DataLibrary
             sb.Append("ALTER TABLE " + model.Name +
                 "\nALTER COLUMN " + alterColumn.Name + " " + alterColumn.Type + ";");
 
-            SqlCommand command = new SqlCommand(sb.ToString(), sqlConnection);
-
-            return this.ExetuteScript(command);
+            return this.ExetuteScript(sb.ToString());
         }
 
         public void SelectDataFromDB(TableModel model)
@@ -218,7 +218,7 @@ namespace DataLibrary
             sqlConnection.Close();
         }
 
-        private string ExetuteScript(SqlCommand command)
+        public string ExetuteScript(string script)
         {
             string errorMessage = string.Empty;
 
@@ -228,6 +228,8 @@ namespace DataLibrary
                 {
                     sqlConnection.Open();
                 }
+
+                SqlCommand command = new SqlCommand(script, sqlConnection);
 
                 //sqlConnection.Open();
                 command.ExecuteNonQuery();
