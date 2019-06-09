@@ -16,5 +16,13 @@ namespace DataLibrary
 
         public string Name { get => name; set => name = value; }
         public List<ColumnProperty> ColumnCollection { get => propertyCollection; set => propertyCollection = value; }
+
+        public ColumnProperty ColumnProperty
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

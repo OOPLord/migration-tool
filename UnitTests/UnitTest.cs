@@ -19,11 +19,59 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void TestDeployment()
+        {
+            string errorMessage = string.Empty;
+
+            Deployment.DeterminePaths();
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
+        }
+
+        [TestMethod]
+        public void TestCreateFile()
+        {
+            string errorMessage = string.Empty;
+
+            const string code = "using DataLibrary;" +
+                            "\nusing System.IO;" +
+                            "\nusing System.Diagnostics;" +
+
+                            "\n\nnamespace Migrations" +
+                            "\n{" +
+                                "\n\tpublic class Test2" +
+                                "\n\t{" +
+                                    "\n\t\tpublic void UP()" +
+                                    "\n\t\t{" +
+                                        "\n\t\t\tSqlConverter sqlConverter = new SqlConverter();" +
+
+                                        "\n\n\t\t\tsqlConverter.CreateNewDatabase(\"D:\\\\\", \"teststs\");" +
+
+                                    "\n\t\t}" +
+                                "\n\t}" +
+                            "\n}";
+
+            FileManager.CreateFile(@"D:\Workspace\Diploma\migration-tool\Migrations\Test2.cs", code);
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
+        }
+
+        [TestMethod]
+        public void TestLoadFile()
+        {
+            string errorMessage = string.Empty;
+
+            FileManager.InvokeMethodSlow(string.Empty, "Test2", "UP");
+
+            Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
+        }
+
+        [TestMethod]
         public void TestCreateDataBase()
         {
             string errorMessage = string.Empty;
 
-            errorMessage = sqlConverter.Crea6eNewDatabase("D:\\", "test");
+            errorMessage = sqlConverter.CreateNewDatabase("D:\\", "test");
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
