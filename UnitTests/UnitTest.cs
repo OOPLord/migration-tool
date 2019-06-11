@@ -51,7 +51,7 @@ namespace UnitTests
                                 "\n\t}" +
                             "\n}";
 
-            FileManager.CreateFile(@"D:\Workspace\Diploma\migration-tool\Migrations\Test2.cs", code);
+            FileManager.CreateFile(@"D:\Workspace\Diploma\migration-tool\Migrations\Test2.cs", code, string.Empty);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
@@ -61,7 +61,7 @@ namespace UnitTests
         {
             string errorMessage = string.Empty;
 
-            FileManager.InvokeMethodSlow("Test2", "UP");
+            FileManager.InvokeMethodSlow("Test2", "Test2", "UP", string.Empty);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }

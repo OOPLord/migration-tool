@@ -33,9 +33,9 @@ namespace UnitTests
 
             string code = manager.GenerateCreateTableScript(tm, sqlConverter);
 
-            FileManager.CreateFile(tm.Name, code);
+            FileManager.CreateFile(tm.Name, code, string.Empty);
 
-            FileManager.InvokeMethodSlow(tm.Name, "Up");
+            FileManager.InvokeMethodSlow(tm.Name, tm.Name, "Up", string.Empty);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
@@ -49,7 +49,7 @@ namespace UnitTests
 
             SqlConverter sqlConverter = new SqlConverter(connectionString);
 
-            FileManager.InvokeMethodSlow("Test3", "Down");
+            FileManager.InvokeMethodSlow("Test3", "Test3", "Down", string.Empty);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }

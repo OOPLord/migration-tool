@@ -87,8 +87,6 @@ namespace NClass.GUI
 				string filePath = Path.Combine(directory, "crash.log");
 				writer = new StreamWriter(filePath);
 
-				writer.WriteLine(string.Format(
-					Strings.SendLogFile, Properties.Resources.MailAddress));
 				writer.WriteLine();
 				writer.WriteLine("Version: {0}", Program.GetVersionString());
 				writer.WriteLine("Mono: {0}", MonoHelper.IsRunningOnMono ? "yes" : "no");

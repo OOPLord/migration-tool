@@ -36,11 +36,6 @@ namespace NClass.GUI.Dialogs
 			lnkHomepage.Text = Strings.VisitHomepage;
 			btnClose.Text = Strings.ButtonClose;
 
-			lnkHomepage.Links.Clear();
-			lnkEmail.Links.Clear();
-			lnkHomepage.Links.Add(0, lnkHomepage.Text.Length, Properties.Resources.WebAddress);
-			lnkEmail.Links.Add(0, lnkEmail.Text.Length,
-				"mailto:" + Properties.Resources.MailAddress + "?subject=NClass");
 			lblTranslator.Text = Strings.Translator;
 		}
 

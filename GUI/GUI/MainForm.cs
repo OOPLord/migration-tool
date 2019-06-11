@@ -277,8 +277,6 @@ namespace NClass.GUI
 
 			// Help menu
 			mnuHelp.Text = Strings.MenuHelp;
-			mnuContents.Text = Strings.MenuContents;
-			mnuCheckForUpdates.Text = Strings.MenuCheckForUpdates;
 			mnuAbout.Text = Strings.MenuAbout;
 
 			// Toolbar
@@ -923,14 +921,26 @@ namespace NClass.GUI
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
+            MigrateDialog diag = new MigrateDialog();
+            diag.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            DialogResult res = diag.ShowDialog();
+
+            if (res == DialogResult.Cancel)
+            {
+                return;
+            }
+
             var items = Workspace.Default.ActiveProject.Items;
 
-            List<TableModel> tables = new List<TableModel>();
+            Dictionary<string, List<TableModel>> tables = new Dictionary<string, List<TableModel>>();
 
             foreach (var item in items)
             {
                 if (item is NClass.DiagramEditor.ClassDiagram.Diagram diagram)
                 {
+                    string diagramName = diagram.Name;
+
                     foreach (var entity in diagram.Entities)
                     {
                         if (entity is ClassType classType)
@@ -950,17 +960,34 @@ namespace NClass.GUI
 
                             table.ColumnCollection = columns;
 
-                            tables.Add(table);
+                            if (tables.ContainsKey(diagramName))
+                            {
+                                tables[diagramName].Add(table);
+                            }
+                            else
+                            {
+                                tables.Add(diagramName, new List<TableModel> { table });
+                            }
                         }
                     }
                 }
             }
 
+            string fileName = diag.FileName;
+
             MigrationManager manager = new MigrationManager();
 
             foreach (var table in tables)
             {
-                manager.AddToDB(table);
+                if (string.IsNullOrWhiteSpace(table.Key))
+                {
+                    continue;
+                }
+
+                foreach (var item in table.Value)
+                {
+                    manager.AddToDB(item, fileName, table.Key);
+                }
             }
         }
     }

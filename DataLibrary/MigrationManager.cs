@@ -20,7 +20,7 @@ namespace DataLibrary
             converter = new SqlConverter(connectionString);
         }
 
-        public void AddToDB(TableModel table)
+        public void AddToDB(TableModel table, string fileName, string folderName)
         {
             try
             {
@@ -28,21 +28,21 @@ namespace DataLibrary
 
                 string code = manager.GenerateCreateTableScript(table, converter);
 
-                FileManager.CreateFile(table.Name, code);
+                FileManager.CreateFile(fileName, code, folderName);
 
-                FileManager.InvokeMethodSlow(table.Name, "Up");
+                FileManager.InvokeMethodSlow(fileName, table.Name, "Up", folderName);
             }
-            catch
+            catch (Exception ex)
             {
                 // ignored
             }
         }
 
-        public void MigrateDB(TableModel table)
+        public void MigrateDB(TableModel table, string fileName, string folderName)
         {
             try
             {
-                FileManager.InvokeMethodSlow(table.Name, "Down");
+                FileManager.InvokeMethodSlow(fileName, table.Name, "Down", folderName);
             }
             catch
             {

@@ -13,11 +13,22 @@ namespace DataLibrary
 {
     public static class FileManager
     {
-        public static void CreateFile(string fileName, string code)
+
+        public static void CreateFile(string fileName, string code, string folderName)
         {
             string rootFolder = Deployment.DeterminePaths();
 
             string migrationsDirectory = rootFolder + Path.DirectorySeparatorChar + "Migrations";
+
+            if (!Directory.Exists(migrationsDirectory))
+            {
+                Directory.CreateDirectory(migrationsDirectory);
+            }
+
+            if (!string.IsNullOrWhiteSpace(folderName))
+            {
+                migrationsDirectory = Path.Combine(migrationsDirectory, folderName);
+            }
 
             if (!Directory.Exists(migrationsDirectory))
             {
@@ -48,11 +59,23 @@ namespace DataLibrary
         }
 
         public static Object InvokeMethodSlow(
-               string ClassName, string MethodName)
+            string fileName,
+            string ClassName,
+            string MethodName,
+            string folderName)
         {
             string rootFolder = Deployment.DeterminePaths();
 
-            string migrationFile = Path.Combine(rootFolder, "Migrations", ClassName + ".cs");
+            string migrationFile = rootFolder;
+
+            if (string.IsNullOrWhiteSpace(folderName))
+            {
+                migrationFile = Path.Combine(rootFolder, "Migrations", fileName + ".cs");
+            }
+            else
+            {
+                migrationFile = Path.Combine(rootFolder, "Migrations", folderName, fileName + ".cs");
+            }
 
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
             ICodeCompiler icc = codeProvider.CreateCompiler();

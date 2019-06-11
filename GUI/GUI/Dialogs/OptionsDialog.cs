@@ -256,5 +256,5 @@ namespace NClass.GUI.Dialogs
 		{
 			SaveSettings();
 		}
-	}
+    }
 }
