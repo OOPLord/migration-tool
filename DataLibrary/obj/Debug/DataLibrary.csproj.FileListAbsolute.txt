@@ -10,4 +10,3 @@ D:\Workspace\Diploma\migration-tool\DataLibrary\bin\Debug\DataLibrary.pdb
 D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.csproj.CoreCompileInputs.cache
 D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.dll
 D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.pdb
-D:\Workspace\Diploma\migration-tool\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache

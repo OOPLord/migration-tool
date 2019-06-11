@@ -97,8 +97,6 @@ namespace NClass.GUI
             this.mnuOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPlugins = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuContents = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSepUpdates = new System.Windows.Forms.ToolStripSeparator();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.standardToolStrip = new System.Windows.Forms.ToolStrip();
@@ -125,8 +123,8 @@ namespace NClass.GUI
             this.toolSepRedo = new System.Windows.Forms.ToolStripSeparator();
             this.toolZoomValue = new System.Windows.Forms.ToolStripLabel();
             this.toolZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.toolZoom = new NClass.GUI.ZoomingToolStrip();
             this.toolZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.toolZoom = new NClass.GUI.ZoomingToolStrip();
             this.toolAutoZoom = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer.BottomToolStripPanel.SuspendLayout();
@@ -762,42 +760,22 @@ namespace NClass.GUI
             // mnuHelp
             // 
             this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuContents,
-            this.mnuCheckForUpdates,
             this.mnuSepUpdates,
             this.mnuAbout});
             this.mnuHelp.Name = "mnuHelp";
             this.mnuHelp.Size = new System.Drawing.Size(44, 20);
             this.mnuHelp.Text = "&Help";
             // 
-            // mnuContents
-            // 
-            this.mnuContents.Image = global::NClass.GUI.Properties.Resources.Help;
-            this.mnuContents.Name = "mnuContents";
-            this.mnuContents.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mnuContents.Size = new System.Drawing.Size(171, 22);
-            this.mnuContents.Text = "&Contents";
-            this.mnuContents.Visible = false;
-            this.mnuContents.Click += new System.EventHandler(this.mnuContents_Click);
-            // 
-            // mnuCheckForUpdates
-            // 
-            this.mnuCheckForUpdates.Image = global::NClass.GUI.Properties.Resources.SearchWeb;
-            this.mnuCheckForUpdates.Name = "mnuCheckForUpdates";
-            this.mnuCheckForUpdates.Size = new System.Drawing.Size(171, 22);
-            this.mnuCheckForUpdates.Text = "Check for &Updates";
-            this.mnuCheckForUpdates.Click += new System.EventHandler(this.mnuCheckForUpdates_Click);
-            // 
             // mnuSepUpdates
             // 
             this.mnuSepUpdates.Name = "mnuSepUpdates";
-            this.mnuSepUpdates.Size = new System.Drawing.Size(168, 6);
+            this.mnuSepUpdates.Size = new System.Drawing.Size(104, 6);
             // 
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(171, 22);
-            this.mnuAbout.Text = "&About NClass...";
+            this.mnuAbout.Size = new System.Drawing.Size(107, 22);
+            this.mnuAbout.Text = "&About";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
             // standardToolStrip
@@ -825,7 +803,7 @@ namespace NClass.GUI
             this.toolStripButton1});
             this.standardToolStrip.Location = new System.Drawing.Point(3, 24);
             this.standardToolStrip.Name = "standardToolStrip";
-            this.standardToolStrip.Size = new System.Drawing.Size(502, 25);
+            this.standardToolStrip.Size = new System.Drawing.Size(419, 25);
             this.standardToolStrip.TabIndex = 1;
             // 
             // toolNew
@@ -1032,13 +1010,6 @@ namespace NClass.GUI
             this.toolZoomOut.Size = new System.Drawing.Size(23, 22);
             this.toolZoomOut.Click += new System.EventHandler(this.toolZoomOut_Click);
             // 
-            // toolZoom
-            // 
-            this.toolZoom.Enabled = false;
-            this.toolZoom.Name = "toolZoom";
-            this.toolZoom.Size = new System.Drawing.Size(100, 22);
-            this.toolZoom.ZoomValueChanged += new System.EventHandler(this.toolZoom_ZoomValueChanged);
-            // 
             // toolZoomIn
             // 
             this.toolZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1048,6 +1019,13 @@ namespace NClass.GUI
             this.toolZoomIn.Name = "toolZoomIn";
             this.toolZoomIn.Size = new System.Drawing.Size(23, 22);
             this.toolZoomIn.Click += new System.EventHandler(this.toolZoomIn_Click);
+            // 
+            // toolZoom
+            // 
+            this.toolZoom.Enabled = false;
+            this.toolZoom.Name = "toolZoom";
+            this.toolZoom.Size = new System.Drawing.Size(100, 22);
+            this.toolZoom.ZoomValueChanged += new System.EventHandler(this.toolZoom_ZoomValueChanged);
             // 
             // toolAutoZoom
             // 
@@ -1066,7 +1044,7 @@ namespace NClass.GUI
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "Migrate";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // MainForm
@@ -1082,7 +1060,7 @@ namespace NClass.GUI
             this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NClass";
+            this.Text = "migration-tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
@@ -1133,7 +1111,6 @@ namespace NClass.GUI
 		private System.Windows.Forms.ToolStripSeparator mnuSepExport;
 		private System.Windows.Forms.ToolStripMenuItem mnuExit;
 		private System.Windows.Forms.ToolStripMenuItem mnuHelp;
-		private System.Windows.Forms.ToolStripMenuItem mnuContents;
 		private System.Windows.Forms.ToolStripSeparator mnuSepUpdates;
 		private System.Windows.Forms.ToolStripMenuItem mnuAbout;
 		private System.Windows.Forms.ToolStripMenuItem mnuRecentFile1;
@@ -1164,7 +1141,6 @@ namespace NClass.GUI
 		private System.Windows.Forms.ToolStripMenuItem mnuDelete;
 		private System.Windows.Forms.ToolStripSeparator mnuSepDelete;
 		private System.Windows.Forms.ToolStripMenuItem mnuSelectAll;
-		private System.Windows.Forms.ToolStripMenuItem mnuCheckForUpdates;
 		private System.Windows.Forms.ToolStripMenuItem mnuPlugins;
 		private ZoomingToolStrip toolZoom;
 		private System.Windows.Forms.ToolStripLabel toolZoomValue;

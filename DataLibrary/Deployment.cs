@@ -24,7 +24,12 @@ namespace DataLibrary
             string[] splitPath = folderPathToExecutedAssembly.Split(
                 new[] { subpathMustBe }, StringSplitOptions.None);
 
-            string pathToRootFolder = splitPath[0] + subpathMustBe;
+            string pathToRootFolder = string.Empty;
+
+            for (int i = 0; i < splitPath.Length - 1; i++)
+            {
+                pathToRootFolder += splitPath[i] + subpathMustBe;
+            }
 
             return pathToRootFolder;
         }

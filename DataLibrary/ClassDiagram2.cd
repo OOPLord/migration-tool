@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataLibrary.ColumnProperty">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ColumnProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.Deployment">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Deployment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.FileManager">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.Manager">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.MigrationDataManager">
+    <Position X="0.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQQAAAEAAAAAAAAAAAAAAAAAAAAAACIAAIAACA=</HashCode>
+      <FileName>MigrationDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.MigrationManager">
+    <Position X="4.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAEAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MigrationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.SqlConverter">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgFAAgAAAYQAAAAAEAAAACAgAACAAAg=</HashCode>
+      <FileName>SqlConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataLibrary.TableModel">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAQAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

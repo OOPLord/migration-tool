@@ -141,15 +141,6 @@ namespace NClass.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to btihanyi@users.sourceforge.net.
-        /// </summary>
-        internal static string MailAddress {
-            get {
-                return ResourceManager.GetString("MailAddress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NewDocument {
@@ -276,15 +267,6 @@ namespace NClass.GUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Web", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://nclass.sourceforge.net/.
-        /// </summary>
-        internal static string WebAddress {
-            get {
-                return ResourceManager.GetString("WebAddress", resourceCulture);
             }
         }
         
