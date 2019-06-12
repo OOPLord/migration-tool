@@ -92,5 +92,16 @@ namespace NClass.GUI {
                 this["RememberOpenProjects"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;AttachDbFilename=D:\\data.mdf;Integrated Securi" +
+            "ty=True")]
+        public string dataConnectionString {
+            get {
+                return ((string)(this["dataConnectionString"]));
+            }
+        }
     }
 }

@@ -92,7 +92,7 @@ namespace UnitTests
             string errorMessage = string.Empty;
 
             TableModel tm = new TableModel();
-            tm.Name = "RuntimeTable";
+            tm.Name = "NewTable";
             tm.ColumnCollection = new List<ColumnProperty>()
             {
                 new ColumnProperty("PersonID", "int"),
@@ -100,7 +100,21 @@ namespace UnitTests
                 new ColumnProperty("LastName", "varchar(255)"),
             };
 
-            errorMessage = sqlConverter.CreateNewTable(tm);
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;"
+                                    + "Initial Catalog={0};"
+                                    + "Integrated Security=True;"
+                                    + "Connect Timeout=30;"
+                                    + "Encrypt=False;"
+                                    + "TrustServerCertificate=False;"
+                                    + "ApplicationIntent=ReadWrite;"
+                                    + "MultiSubnetFailover=False";
+
+            string connection = string.Format(connectionString, @"D:\test.mdf");
+
+            SqlConnection sql = new SqlConnection(connection);
+
+            string sqlScript = sqlConverter.CreateNewTable(tm);
+            errorMessage = sqlConverter.ExetuteScript(sqlScript);
 
             Assert.IsTrue(string.IsNullOrWhiteSpace(errorMessage), errorMessage);
         }
