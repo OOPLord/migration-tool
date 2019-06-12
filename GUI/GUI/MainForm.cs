@@ -919,6 +919,8 @@ namespace NClass.GUI
 
         #endregion
 
+        private string sqlConnectionPath = string.Empty;
+
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             MigrateDialog diag = new MigrateDialog();
@@ -973,9 +975,29 @@ namespace NClass.GUI
                 }
             }
 
+            MigrationManager manager = null;
+
             string fileName = diag.FileName;
 
-            MigrationManager manager = new MigrationManager();
+            if (!string.IsNullOrWhiteSpace(this.sqlConnectionPath))
+            {
+                string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;"
+                                    + "Initial Catalog={0};"
+                                    + "Integrated Security=True;"
+                                    + "Connect Timeout=30;"
+                                    + "Encrypt=False;"
+                                    + "TrustServerCertificate=False;"
+                                    + "ApplicationIntent=ReadWrite;"
+                                    + "MultiSubnetFailover=False";
+
+                string connection = string.Format(connectionString, this.sqlConnectionPath);
+
+                manager = new MigrationManager(connection);
+            }
+            else
+            {
+                manager = new MigrationManager();
+            }
 
             foreach (var table in tables)
             {
@@ -989,6 +1011,21 @@ namespace NClass.GUI
                     manager.AddToDB(item, fileName, table.Key);
                 }
             }
+        }
+
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            OpenDBDialog dBDialog = new OpenDBDialog();
+            dBDialog.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            DialogResult res = dBDialog.ShowDialog();
+
+            if (res == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.sqlConnectionPath = dBDialog.FileName;
         }
     }
 }
