@@ -58,7 +58,7 @@ namespace DataLibrary
             ////p.Save();
         }
 
-        public static Object InvokeMethodSlow(
+        public static string InvokeMethodSlow(
             string fileName,
             string ClassName,
             string MethodName,
@@ -66,14 +66,20 @@ namespace DataLibrary
         {
             string rootFolder = Deployment.DeterminePaths();
 
-            string migrationFile = rootFolder;
+            string dataLibDll = string.Empty;
+            string migrDll = string.Empty;
+            string migrationFile = string.Empty;
 
             if (string.IsNullOrWhiteSpace(folderName))
             {
+                dataLibDll = Path.Combine(rootFolder, @"DataLibrary\bin\Debug\DataLibrary.dll");
+                migrDll = Path.Combine(rootFolder, @"Migrations\Migration.dll");
                 migrationFile = Path.Combine(rootFolder, "Migrations", fileName + ".cs");
             }
             else
             {
+                dataLibDll = Path.Combine(rootFolder, @"DataLibrary\bin\Debug\DataLibrary.dll");
+                migrDll = Path.Combine(rootFolder, @"Migrations\Migration.dll");
                 migrationFile = Path.Combine(rootFolder, "Migrations", folderName, fileName + ".cs");
             }
 
@@ -81,23 +87,23 @@ namespace DataLibrary
             ICodeCompiler icc = codeProvider.CreateCompiler();
 
             CompilerParameters parameters = new CompilerParameters(
-                new string[] { @"D:\Workspace\Diploma\migration-tool\DataLibrary\bin\Debug\DataLibrary.dll" });
+                new string[] { dataLibDll });
 
             parameters.ReferencedAssemblies.Add("System.IO.dll");
 
             parameters.GenerateExecutable = false;
-            parameters.OutputAssembly = @"D:\Workspace\Diploma\migration-tool\Migrations\Migration.dll";
+            parameters.OutputAssembly = migrDll;
 
             CompilerResults results = icc.CompileAssemblyFromFile(parameters, migrationFile);
 
             if (results.Errors.Count > 0)
             {
-                return null;
+                return results.Errors[0].ErrorText;
             }
 
             Object[] args = null;
             // load the assemly
-            Assembly assembly = Assembly.LoadFrom(@"D:\Workspace\Diploma\migration-tool\Migrations\Migration.dll");
+            Assembly assembly = Assembly.LoadFrom(migrDll);
 
             // Walk through each type in the assembly looking for our class
             foreach (Type type in assembly.GetTypes())
@@ -115,7 +121,9 @@ namespace DataLibrary
                                null,
                                ClassObj,
                                args);
-                        return (Result);
+
+                        ////return (Result);
+                        return string.Empty;
                     }
                 }
             }

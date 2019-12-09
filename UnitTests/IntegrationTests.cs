@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace UnitTests
 {
     [TestClass]
-    public class MigrationUnitTests
+    public class IntegrationTests
     {
         [TestMethod]
         public void Test_MigrateFromManager_Up()
         {
             string errorMessage = string.Empty;
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=teststs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=D:\Workspace\Diploma Tool\DB\db.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             SqlConverter sqlConverter = new SqlConverter(connectionString);
 
