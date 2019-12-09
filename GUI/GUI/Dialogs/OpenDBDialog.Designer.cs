@@ -98,7 +98,7 @@
             this.MinimizeBox = false;
             this.Name = "OpenDBDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Save migration file";
+            this.Text = "Connect to database";
             this.ResumeLayout(false);
             this.PerformLayout();
 
