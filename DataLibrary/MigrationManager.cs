@@ -30,7 +30,7 @@ namespace DataLibrary
 
                 FileManager.CreateFile(fileName, code, folderName);
 
-                FileManager.InvokeMethodSlow(fileName, table.Name, "Up", folderName);
+                string result = FileManager.InvokeMethodSlow(fileName, table.Name, "Up", folderName);
             }
             catch (Exception ex)
             {

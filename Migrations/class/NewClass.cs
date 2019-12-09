@@ -8,7 +8,7 @@ namespace Migrations
 		public void Up()
 		{
 
-			string sqlScript = "CREATE TABLE NewClass();";
+			string sqlScript = "CREATE TABLE NewClass(newField int,);";
 
 			sqlConverter.ExetuteScript(sqlScript);
 		}

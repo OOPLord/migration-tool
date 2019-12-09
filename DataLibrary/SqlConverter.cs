@@ -78,10 +78,17 @@ namespace DataLibrary
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("CREATE TABLE " + model.Name + "(");
+            sb.Append("CREATE TABLE " + model.Name);
 
             // ToDo: check if collection is not empty
             //sb.Append("(\n");
+
+            if (model.ColumnCollection.Count == 0)
+            {
+                throw new ArgumentException("Table cannot be created without at least one column.");
+            }
+
+            sb.Append("(");
 
             foreach (var column in model.ColumnCollection)
             {
