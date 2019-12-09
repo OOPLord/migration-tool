@@ -16,7 +16,7 @@ namespace DataLibrary
 
         public SqlConverter()
         {
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=demodb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=D:\Workspace\Diploma Tool\DB\db.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             sqlConnection = new SqlConnection(connectionString);
             ////sqlConnection.Open();

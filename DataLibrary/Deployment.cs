@@ -26,10 +26,12 @@ namespace DataLibrary
 
             string pathToRootFolder = string.Empty;
 
-            for (int i = 0; i < splitPath.Length - 1; i++)
-            {
-                pathToRootFolder += splitPath[i] + subpathMustBe;
-            }
+            ////for (int i = 0; i < splitPath.Length - 1; i++)
+            ////{
+            ////    pathToRootFolder += splitPath[i] + subpathMustBe;
+            ////}
+
+            pathToRootFolder += splitPath[0] + subpathMustBe;
 
             return pathToRootFolder;
         }

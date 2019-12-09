@@ -361,6 +361,9 @@ namespace NClass.GUI
 			toolZoomOut.Enabled = docManager.HasDocument;
 			toolZoomValue.Enabled = docManager.HasDocument;
 			toolAutoZoom.Enabled = docManager.HasDocument && !docManager.ActiveDocument.IsEmpty;
+            
+            migrateButton.Enabled = docManager.HasDocument;
+            connectButton.Enabled = docManager.HasDocument;
 		}
 
 		private void UpdateClipboardToolBar()
@@ -977,7 +980,13 @@ namespace NClass.GUI
 
             MigrationManager manager = null;
 
-            string fileName = diag.FileName;
+            string folderName = diag.FileName;
+
+            if ((string.IsNullOrWhiteSpace(folderName) || folderName.Equals("auto")) 
+                && Workspace.Default.HasActiveProject)
+            {
+                folderName = docManager.ActiveDocument.Name;
+            }
 
             if (!string.IsNullOrWhiteSpace(this.sqlConnectionPath))
             {
@@ -1008,7 +1017,7 @@ namespace NClass.GUI
 
                 foreach (var item in table.Value)
                 {
-                    manager.AddToDB(item, fileName, table.Key);
+                    manager.AddToDB(item, item.Name, folderName);
                 }
             }
         }
