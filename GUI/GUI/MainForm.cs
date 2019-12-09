@@ -926,6 +926,12 @@ namespace NClass.GUI
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (Workspace.Default.ActiveProject.ItemCount == 0)
+            {
+                MessageBox.Show("No class entities were created.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MigrateDialog diag = new MigrateDialog();
             diag.FormBorderStyle = FormBorderStyle.FixedDialog;
 
@@ -955,6 +961,16 @@ namespace NClass.GUI
                             table.Name = classType.Name;
 
                             List<ColumnProperty> columns = new List<ColumnProperty>();
+
+                            if (classType.FieldCount == 0)
+                            {
+                                MessageBox.Show(
+                                    "As table cannot be created without columns, each Class entity should contain at least one filed.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                                return;
+                            }
 
                             foreach (var field in classType.Fields)
                             {

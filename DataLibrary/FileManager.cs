@@ -73,13 +73,13 @@ namespace DataLibrary
             if (string.IsNullOrWhiteSpace(folderName))
             {
                 dataLibDll = Path.Combine(rootFolder, @"DataLibrary\bin\Debug\DataLibrary.dll");
-                migrDll = Path.Combine(rootFolder, @"Migrations\Migration.dll");
+                migrDll = Path.Combine(rootFolder, $@"Migrations\Migration_{ClassName}.dll");
                 migrationFile = Path.Combine(rootFolder, "Migrations", fileName + ".cs");
             }
             else
             {
                 dataLibDll = Path.Combine(rootFolder, @"DataLibrary\bin\Debug\DataLibrary.dll");
-                migrDll = Path.Combine(rootFolder, @"Migrations\Migration.dll");
+                migrDll = Path.Combine(rootFolder, $@"Migrations\{folderName}\Migration_{ClassName}.dll");
                 migrationFile = Path.Combine(rootFolder, "Migrations", folderName, fileName + ".cs");
             }
 
@@ -100,6 +100,8 @@ namespace DataLibrary
             {
                 return results.Errors[0].ErrorText;
             }
+
+            codeProvider.Dispose();
 
             Object[] args = null;
             // load the assemly
@@ -123,7 +125,7 @@ namespace DataLibrary
                                args);
 
                         ////return (Result);
-                        return string.Empty;
+                        return (Result as string);
                     }
                 }
             }
