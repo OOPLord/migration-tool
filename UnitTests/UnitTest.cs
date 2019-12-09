@@ -109,7 +109,7 @@ namespace UnitTests
                                     + "ApplicationIntent=ReadWrite;"
                                     + "MultiSubnetFailover=False";
 
-            string connection = string.Format(connectionString, @"D:\test.mdf");
+            string connection = string.Format(connectionString, @"D:\Workspace\Diploma Tool\DB\db.mdf");
 
             SqlConnection sql = new SqlConnection(connection);
 
