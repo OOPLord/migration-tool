@@ -98,6 +98,7 @@
             this.Name = "MigrateDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Save migration file";
+            this.Load += new System.EventHandler(this.MigrateDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

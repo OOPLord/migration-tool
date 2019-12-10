@@ -1052,5 +1052,20 @@ namespace NClass.GUI
 
             this.sqlConnectionPath = dBDialog.FileName;
         }
+
+        private void undoSQLButton_Click(object sender, EventArgs e)
+        {
+            UndoSQLDialog undoDialog = new UndoSQLDialog();
+            undoDialog.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            DialogResult res = undoDialog.ShowDialog();
+
+            if (res == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
+        }
     }
 }
