@@ -86,6 +86,12 @@
     <Compile Include="Dialogs\MigrateDialog.Designer.cs">
       <DependentUpon>MigrateDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\UndoSQLDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UndoSQLDialog.Designer.cs">
+      <DependentUpon>UndoSQLDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimplePlugin.cs" />
     <Compile Include="NClassEnvironment.cs" />
     <Compile Include="Plugin.cs" />
@@ -134,6 +140,9 @@
     <EmbeddedResource Include="Dialogs\OptionsDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UndoSQLDialog.resx">
+      <DependentUpon>UndoSQLDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>

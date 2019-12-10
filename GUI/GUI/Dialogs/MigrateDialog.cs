@@ -38,5 +38,10 @@ namespace NClass.GUI.Dialogs
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void MigrateDialog_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
